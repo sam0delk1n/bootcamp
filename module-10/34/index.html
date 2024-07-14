@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-size: large;
+        }
+        div {
+            background: gainsboro;
+            width: 600px;
+            margin: 50px auto;
+            padding: 30px 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            margin: 50px 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width:   250px;
+            text-align: right;
+        }
+        input {
+            width: 75px;
+            margin-left: 20px;
+        }
+    </style>
+    <script src="./script.js"></script>
+    <title>10.34 - Калькулятор чаевых</title>
+</head>
+<body>
+    <div>
+    <h1>10.34 - Калькулятор чаевых</h1>
+    <ul>
+        <li>
+            <label>Количество человек</label>
+            <input id="input_units" type="text">
+        </li>
+        <li>
+            <label>Сумма чека</label>
+            <input id="input_amount" type="text">
+        </li>
+        <li>
+            <label>Процент чаевых</label>
+            <input id="input_tips" type="text">
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <label>Цена на человека</label>
+            <input id="input_price" type="text" readonly>
+        </li>
+    </ul>
+    </div>
+</body>
+</html>
