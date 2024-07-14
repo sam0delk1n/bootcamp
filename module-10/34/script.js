@@ -56,6 +56,6 @@ class Service {
 
         // Цена на человека
         const price = (amount + 0.01 * amount * tips) / units;
-        return price.toString(10);
+        return price.toFixed(2);
     }
 }
