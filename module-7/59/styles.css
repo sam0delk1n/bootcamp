@@ -1,0 +1,42 @@
+body {
+    margin:      auto;
+    max-width:   2000px; /* Поставим максимальную ширину 2000px */
+    background:  #ff99c8; /* И сразу ставим Цвет 4 (до 2000px) */
+    font-family: 'Arial', sans-serif;
+    font-size:   16px;
+    transition:  background 1s linear;
+}
+
+@media (max-width: 1500px) { body { background: #fcf6bd; } } /* Меняем на Цвет 3 если <= 1500 */
+@media (max-width: 1000px) { body { background: #d0f4de; } } /* Меняем на Цвет 2 если <= 1000 */
+@media (max-width: 500px ) { body { background: #a9def9; } } /* Меняем на Цвет 1 если <= 500 */
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.main-content {
+    margin:  0 auto;
+    width:   80%;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
