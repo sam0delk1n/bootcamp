@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Шахматная доска</title>
+  <style>
+    #chessboard {
+        display:               grid;
+        grid-template-columns: repeat(8, 50px);
+        grid-template-rows:    repeat(8, 50px);
+        margin:                auto;
+        width:                 400px;
+    }
+
+    .white {
+      background-color: #eae0d0;
+    }
+
+    .black {
+      background-color: #594a3d;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="chessboard">
+        <script>
+            "use strict";
+
+            const chessboard = window.document.getElementById("chessboard");
+
+            chessboard.addSquare = function(className) {
+                const element = window.document.createElement("div");
+                element.className = className;
+                this.appendChild(element);
+
+                return this;
+            }
+
+            for (let y = 0; y < 4; ++y) {
+                for (let x = 0; x < 4; ++x) {
+                    chessboard.addSquare("white").addSquare("black");
+                }
+                for (let x = 0; x < 4; ++x) {
+                    chessboard.addSquare("black").addSquare("white");
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
