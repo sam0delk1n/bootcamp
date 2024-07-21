@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display:         flex;
+            justify-content: center;
+            align-items:     center;
+            margin:          0;
+            height:          100vh;
+            background:      rgb(32, 32, 32);
+        }
+
+        canvas {
+            min-width:  512px;
+            min-height: 288px;
+        }
+    </style>
     <script type="module" src="./main.js"></script>
     <title>WebGL2 Demo</title>
 </head>
 <body>
-    <canvas width="400" height="400" id="canvas"></canvas>
+    <canvas width="1024" height="576" id="canvas"></canvas>
 </body>
 </html>
