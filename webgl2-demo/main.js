@@ -1,3 +1,5 @@
+import {Mat3} from "./math.js";
+
 window.addEventListener("load", main);
 
 async function main() {
@@ -53,9 +55,7 @@ async function main() {
 
         const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
         const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
-        const translationUniformLocation = gl.getUniformLocation(program, "u_translation");
-        const rotationLocation = gl.getUniformLocation(program, "u_rotation");
-        const scaleLocation = gl.getUniformLocation(program, "u_scale");
+        const matrixLocation = gl.getUniformLocation(program, "u_matrix");
         const colorUniformLocation = gl.getUniformLocation(program, "u_color");
 
         function randomInt(range) {
@@ -78,17 +78,14 @@ async function main() {
                 gl.STATIC_DRAW
             );
 
-            gl.uniform2f(translationUniformLocation, x, y);
+            const matrix = new Mat3();
 
-            const radians = Math.PI / 180 * degrees;
+            matrix
+                .multiply( Mat3.makeTranslation(x, y) )
+                .multiply( Mat3.makeRotation(Math.PI / 180 * degrees) )
+                .multiply( Mat3.makeScale(w, h) );
 
-            gl.uniform2f(
-                rotationLocation,
-                Math.sin(radians),
-                Math.cos(radians)
-            );
-
-            gl.uniform2f(scaleLocation, w, h);
+            gl.uniformMatrix3fv(matrixLocation, false, matrix.elements);
 
             gl.uniform4fv(colorUniformLocation, color);
 
