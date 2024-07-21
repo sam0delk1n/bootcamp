@@ -1,15 +1,15 @@
 export class Mat3 {
+    #elements = [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+
     constructor(
         m11, m12, m13,
         m21, m22, m23,
         m31, m32, m33
     ) {
-        this.elements = [
-            1, 0, 0,
-            0, 1, 0,
-            0, 0, 1
-        ];
-
         if (m11 !== undefined) {
             this.set(
                 m11, m12, m13,
@@ -24,7 +24,7 @@ export class Mat3 {
         m21, m22, m23,
         m31, m32, m33
     ) {
-        const e = this.elements;
+        const e = this.#elements;
 
         e[0] = m11; e[1] = m12; e[2] = m13;
         e[3] = m21; e[4] = m22; e[5] = m23;
@@ -42,8 +42,8 @@ export class Mat3 {
     }
 
     copy(other) {
-		const a = this.elements;
-		const b = other.elements;
+		const a = this.#elements;
+		const b = other.#elements;
 
 		a[0] = b[0]; a[1] = b[1]; a[2] = b[2];
 		a[3] = b[3]; a[4] = b[4]; a[5] = b[5];
@@ -53,8 +53,8 @@ export class Mat3 {
 	}
 
     multiply(other) {
-        const a = this.elements;
-        const b = other.elements;
+        const a = this.#elements;
+        const b = other.#elements;
 
         const temp = new Mat3(
             b[0] * a[0] + b[1] * a[3] + b[2] * a[6],
@@ -96,5 +96,15 @@ export class Mat3 {
             0, y, 0,
             0, 0, 1
         );
+    }
+
+    toArray() {
+        const e = this.#elements;
+
+        return [
+            e[0], e[1], e[2],
+            e[3], e[4], e[5],
+            e[6], e[7], e[8]
+        ];
     }
 }

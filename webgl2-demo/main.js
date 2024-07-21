@@ -85,7 +85,7 @@ async function main() {
                 .multiply( Mat3.makeRotation(Math.PI / 180 * degrees) )
                 .multiply( Mat3.makeScale(w, h) );
 
-            gl.uniformMatrix3fv(matrixLocation, false, matrix.elements);
+            gl.uniformMatrix3fv( matrixLocation, false, matrix.toArray() );
 
             gl.uniform4fv(colorUniformLocation, color);
 
