@@ -42,15 +42,15 @@ export class Mat3 {
     }
 
     copy(other) {
-		const a = this.#elements;
-		const b = other.#elements;
+        const a = this.#elements;
+        const b = other.#elements;
 
-		a[0] = b[0]; a[1] = b[1]; a[2] = b[2];
-		a[3] = b[3]; a[4] = b[4]; a[5] = b[5];
-		a[6] = b[6]; a[7] = b[7]; a[8] = b[8];
+        a[0] = b[0]; a[1] = b[1]; a[2] = b[2];
+        a[3] = b[3]; a[4] = b[4]; a[5] = b[5];
+        a[6] = b[6]; a[7] = b[7]; a[8] = b[8];
 
-		return this;
-	}
+        return this;
+    }
 
     multiply(other) {
         const a = this.#elements;
@@ -106,5 +106,27 @@ export class Mat3 {
             e[3], e[4], e[5],
             e[6], e[7], e[8]
         ];
+    }
+
+    equals(other) {
+        const a = this.#elements;
+        const b = other.#elements;
+
+        for (let i = 0; i < 9; ++i) {
+            if ( a[i] !== b[i] ) return false;
+        }
+
+        return true;
+    }
+
+    transpose() {
+        const e = this.#elements;
+        let   swap;
+
+        swap = e[1]; e[1] = e[3]; e[3] = swap;
+        swap = e[2]; e[2] = e[6]; e[6] = swap;
+        swap = e[5]; e[5] = e[7]; e[7] = swap;
+
+        return this;
     }
 }
