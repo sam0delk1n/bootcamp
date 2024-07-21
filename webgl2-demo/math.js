@@ -98,6 +98,14 @@ export class Mat3 {
         );
     }
 
+    static makeProjection(w, h) {
+        return new Mat3(
+            2 / w,      0, 0,
+                0, -2 / h, 0,
+               -1,      1, 1
+        );
+    }
+
     toArray() {
         const e = this.#elements;
 

@@ -54,7 +54,6 @@ async function main() {
         const program = createProgram(gl, vertexShader, fragmentShader);
 
         const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
-        const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
         const matrixLocation = gl.getUniformLocation(program, "u_matrix");
         const colorUniformLocation = gl.getUniformLocation(program, "u_color");
 
@@ -62,7 +61,13 @@ async function main() {
             return Math.floor( range * Math.random() );
         }
 
-        function drawRectangle(gl, x, y, w, h, degrees, color) {
+        function drawRectangle(
+            gl,
+            x, y, w, h,
+            degrees,
+            color,
+            pivot = [0, 0]
+        ) {
             const data = [
                 0, 0,
                 1, 0,
@@ -81,8 +86,10 @@ async function main() {
             const matrix = new Mat3();
 
             matrix
+                .multiply( Mat3.makeProjection(gl.canvas.width, gl.canvas.height) )
                 .multiply( Mat3.makeTranslation(x, y) )
                 .multiply( Mat3.makeRotation(Math.PI / 180 * degrees) )
+                .multiply( Mat3.makeTranslation( -pivot[0], -pivot[1] ) )
                 .multiply( Mat3.makeScale(w, h) );
 
             gl.uniformMatrix3fv( matrixLocation, false, matrix.toArray() );
@@ -123,8 +130,6 @@ async function main() {
         gl.useProgram(program);
         gl.bindVertexArray(vao);
 
-        gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
-
         for (let i = 0; i < 50; ++i) {
             drawRectangle(
                 gl,
@@ -137,7 +142,7 @@ async function main() {
             );
         }
 
-        drawRectangle(gl, 128, 128, 256, 256, 0, [1, 1, 0, 1]);
+        drawRectangle( gl, 128, 128, 256, 256, 45, [1, 1, 0, 1], [128, 128] );
 
     } catch (error) {
         window.alert( `ERROR: ${error.message}` );
