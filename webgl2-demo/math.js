@@ -1,10 +1,22 @@
 export class Mat3 {
-    constructor() {
+    constructor(
+        m11, m12, m13,
+        m21, m22, m23,
+        m31, m32, m33
+    ) {
         this.elements = [
             1, 0, 0,
             0, 1, 0,
             0, 0, 1
         ];
+
+        if (m11 !== undefined) {
+            this.set(
+                m11, m12, m13,
+                m21, m22, m23,
+                m31, m32, m33
+            );
+        }
     }
 
     set(
@@ -22,13 +34,11 @@ export class Mat3 {
     }
 
     identity() {
-        this.set(
+        return this.set(
             1, 0, 0,
             0, 1, 0,
             0, 0, 1
         );
-
-        return this;
     }
 
     copy(other) {
@@ -46,9 +56,7 @@ export class Mat3 {
         const a = this.elements;
         const b = other.elements;
 
-        const temp = new Mat3();
-
-        temp.set(
+        const temp = new Mat3(
             b[0] * a[0] + b[1] * a[3] + b[2] * a[6],
             b[0] * a[1] + b[1] * a[4] + b[2] * a[7],
             b[0] * a[2] + b[1] * a[5] + b[2] * a[8],
@@ -64,9 +72,7 @@ export class Mat3 {
     }
 
     static makeTranslation(x, y) {
-        const m = new Mat3();
-
-        return m.set(
+        return new Mat3(
             1, 0, 0,
             0, 1, 0,
             x, y, 1
@@ -77,9 +83,7 @@ export class Mat3 {
         const cos = Math.cos(rads);
         const sin = Math.sin(rads);
 
-        const m = new Mat3();
-
-        return m.set(
+        return new Mat3(
             cos, -sin, 0,
             sin,  cos, 0,
               0,    0, 1
@@ -87,9 +91,7 @@ export class Mat3 {
     }
 
     static makeScale(x, y) {
-        const m = new Mat3();
-
-        return m.set(
+        return new Mat3(
             x, 0, 0,
             0, y, 0,
             0, 0, 1
