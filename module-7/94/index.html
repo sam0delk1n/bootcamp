@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            grid-template: 100px auto 100px / 150px auto;
+        }
+
+        .header,
+        .footer {
+            grid-column: span 2;
+            background: darkslategray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: seashell;
+        }
+
+        .aside {
+            background: lightslategray;
+            padding: 10px;
+            color: seashell;
+        }
+
+        /* Grid layout BEGIN */
+        .main {
+            background: seashell;
+            display: grid;
+            grid-template: 1fr / repeat(3, 1fr);
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .section {
+            background: coral;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                grid-template: repeat(3, 1fr) / 1fr;
+            }
+        }
+        /* Grid layout END */
+
+        /* Flexbox layout BEGIN */
+        /*
+        .main {
+            background: seashell;
+            display: flex;
+            justify-content: stretch;
+            align-items: stretch;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .section {
+            width: 100%;
+            background: coral;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+
+            .section {
+                width: auto;
+                height: 100%;
+            }
+        }
+        */
+        /* Flexbox layout END */
+    </style>
+</head>
+
+<body>
+    <div class="header">Header</div>
+    <div class="aside">Side Panel</div>
+    <div class="main">
+        <div class="section">Content Section 1</div>
+        <div class="section">Content Section 2</div>
+        <div class="section">Content Section 3</div>
+    </div>
+    <div class="footer">Footer</div>
+</body>
+
+</html>
