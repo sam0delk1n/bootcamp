@@ -2,7 +2,7 @@ using System.Text;
 
 static class Format
 {
-    public static string Pretty(Repository repo)
+    public static string Pretty(IRepository<Person> repo)
     {
         StringBuilder sb = new();
 

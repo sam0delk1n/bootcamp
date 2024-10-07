@@ -1,61 +1,38 @@
 using System.Text;
 
-class Repository
+class Repository<T> : IRepository<T>
 {
-    readonly int maxCount;
-    List<Person> data;
+    List<T> items;
 
-    public Repository(int maxCount)
+    public Repository()
     {
-        this.maxCount = maxCount;
-        data = new();
+        items = new();
     }
 
-    public void Append(params Person[] people)
+    public void Append(params T[] args)
     {
-        foreach (var person in people)
-        {
-            if (data.Count < maxCount)
-            {
-                data.Add(person);
-            }
-            else
-            {
-                throw new Exception("Достигнут максимальный размер репозитория!");
-            }
-        }
+        items.AddRange(args);
     }
 
-    public Person GetPersonById(int id)
+    public T GetById(int id)
     {
-        try
-        {
-            return data[id];
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            throw new Exception("Плохой id!");
-        }
+        return items[id];
+    }
+
+    public void ForEach(Action<T> action)
+    {
+        items.ForEach(action);
     }
 
     public override string ToString()
     {
         StringBuilder sb = new();
 
-        sb.AppendLine("{");
-
-        foreach (var person in data)
+        foreach (var item in items)
         {
-            sb.AppendLine($"    {person},");
+            if (item != null) sb.AppendLine(item.ToString());
         }
 
-        sb.Append("}");
-
         return sb.ToString();
-    }
-
-    public void ForEach(Action<Person> action)
-    {
-        data.ForEach(action);
     }
 }

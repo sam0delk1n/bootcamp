@@ -7,9 +7,4 @@ class Employer : Person
     {
         Salary = salary;
     }
-
-    public override string ToString()
-    {
-        return $$"""{ "Name": "{{Name}}", "Age": {{Age}}, "Salary": {{Salary}} }""";
-    }
 }

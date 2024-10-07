@@ -7,9 +7,4 @@ class Teacher : Person
     {
         Subject = subject;
     }
-
-    public override string ToString()
-    {
-        return $$"""{ "Name": "{{Name}}", "Age": {{Age}}, "Subject": "{{Subject}}" }""";
-    }
 }
