@@ -1,4 +1,4 @@
-﻿IRepository<Person> repo = new Repository<Person>();
+IRepository<Person> repo = new Repository<Person>();
 
 for (uint i = 0; i < 7; i++)
 {
@@ -10,6 +10,8 @@ repo.Append(
     new Employer("Второй", 32, 100500),
     new Teacher("Третий", 33, "Питон")
 );
+//repo.Append(null);
+//repo.Append(null, null);
 
 Console.WriteLine(repo.GetById(8));
 

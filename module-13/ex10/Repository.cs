@@ -11,7 +11,10 @@ class Repository<T> : IRepository<T>
 
     public void Append(params T[] args)
     {
-        items.AddRange(args);
+        foreach (var item in args ?? Enumerable.Empty<T>())
+        {
+            if (item != null) items.Add(item);
+        }
     }
 
     public T GetById(int id)
@@ -27,12 +30,7 @@ class Repository<T> : IRepository<T>
     public override string ToString()
     {
         StringBuilder sb = new();
-
-        foreach (var item in items)
-        {
-            if (item != null) sb.AppendLine(item.ToString());
-        }
-
+        items.ForEach(item => sb.AppendLine(item?.ToString()));
         return sb.ToString();
     }
 }
