@@ -1,25 +1,19 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
-abstract class Person
+abstract class Person(string name, uint age)
 {
-    public string Name { get; private set; }
-    public uint Age { get; private set; }
+    public string Name { get; private set; } = name;
+    public uint Age { get; private set; } = age;
 
-    public Person(string name, uint age)
+    private static readonly JsonSerializerOptions options = new()
     {
-        Name = name;
-        Age = age;
-    }
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
 
     public override string ToString()
     {
-        JsonSerializerOptions options = new()
-        {
-            WriteIndented = true,
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-        };
-
         return JsonSerializer.Serialize<object>(this, options);
     }
 }

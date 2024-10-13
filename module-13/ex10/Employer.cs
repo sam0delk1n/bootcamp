@@ -1,10 +1,5 @@
-class Employer : Person
+class Employer(string name, uint age, uint salary)
+    : Person(name, age)
 {
-    public uint Salary { get; private set; }
-
-    public Employer(string name, uint age, uint salary)
-    : base(name, age)
-    {
-        Salary = salary;
-    }
+    public uint Salary { get; private set; } = salary;
 }

@@ -1,10 +1,5 @@
-class Teacher : Person
+class Teacher(string name, uint age, string subject)
+    : Person(name, age)
 {
-    public string Subject { get; private set; }
-
-    public Teacher(string name, uint age, string subject)
-    : base(name, age)
-    {
-        Subject = subject;
-    }
+    public string Subject { get; private set; } = subject;
 }

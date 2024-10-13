@@ -1,20 +1,22 @@
 using System.Text;
 
-class Repository<T> : IRepository<T>
+class Repository<T> : IRepository<T> where T : class
 {
-    List<T> items;
+    readonly List<T> items;
 
     public Repository()
     {
-        items = new();
+        items = [];
     }
 
     public void Append(params T[] args)
     {
-        foreach (var item in args ?? Enumerable.Empty<T>())
+        if (args == default || args.Length == 0 || args.Contains(default))
         {
-            if (item != null) items.Add(item);
+            throw new Exception("Invalid args");
         }
+
+        items.AddRange(args);
     }
 
     public T GetById(int id)
@@ -30,7 +32,7 @@ class Repository<T> : IRepository<T>
     public override string ToString()
     {
         StringBuilder sb = new();
-        items.ForEach(item => sb.AppendLine(item?.ToString()));
+        items.ForEach(item => sb.AppendLine(item.ToString()));
         return sb.ToString();
     }
 }
